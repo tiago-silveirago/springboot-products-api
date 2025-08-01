@@ -2,10 +2,7 @@ package com.tiago_silveirago.course.springboot.springbootproductsapi.controller;
 
 import com.tiago_silveirago.course.springboot.springbootproductsapi.model.Product;
 import com.tiago_silveirago.course.springboot.springbootproductsapi.repository.ProductRepository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -29,5 +26,21 @@ public class ProductController {
         productRepository.save(product);
 
         return product;
+    }
+
+    @GetMapping("{id}") //barra antes do id opcional
+    public Product getById(@PathVariable("id") String id) {
+        return productRepository.findById(id).orElse(null);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable("id") String id) {
+        productRepository.deleteById(id);
+    }
+
+    @PutMapping("{id}")
+    public void update(@PathVariable("id") String id, @RequestBody Product product) {
+        product.setId(id);
+        productRepository.save(product);
     }
 }
