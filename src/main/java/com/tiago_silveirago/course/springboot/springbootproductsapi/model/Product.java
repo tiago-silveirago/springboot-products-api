@@ -1,10 +1,23 @@
 package com.tiago_silveirago.course.springboot.springbootproductsapi.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+//@Table(name = "product")
 public class Product {
 
+    @Id
+//    @Column(name = "id")
     private String id;
+
+//    @Column(name = "name")
     private String name;
+
+//    @Column(name = "description")
     private String description;
+
+//    @Column(name = "price")
     private Double price;
 
     public String getId() {
